@@ -2,7 +2,6 @@
 title: "Understanding and creating polyglots files"
 date: 2025-12-08 00:00:00 +0800
 categories: [File Upload, Polyglots]
-tags: []
 ---
 
 The goal of this post is to explore the nature of polyglot files and the scenarios where they are most effective for discovering vulnerabilities. We will also explore two existing tools which are going to help us create this kind of files.
