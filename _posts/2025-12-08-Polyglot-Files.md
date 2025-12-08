@@ -53,15 +53,15 @@ By inspecting the **parasite** file, it embedded the HTML file inside the PNG wi
 
 Let's dive into why Mitra created this file the way it did, and why it can behave in two completely different ways just by changing its extension.
 
-According to the official PNG specification (RFC 2083), we know that this “cOMM” chunk is considered ancillary because its first character is lowercase (‘c’), which sets the ancillary bit to 1 [(3.3 – Chunk Naming Conventions)](https://datatracker.ietf.org/doc/html/rfc2083#page-13). Mitra simply took advantage of this and injected the payload inside this chunk.
+According to the official PNG specification (RFC 2083), we know that this “cOMM” chunk is considered ancillary because its first character is lowercase (‘c’), which sets the ancillary bit to 1 [3.3 – Chunk Naming Conventions](https://datatracker.ietf.org/doc/html/rfc2083#page-13). Mitra simply took advantage of this and injected the payload inside this chunk.
 
-Ancillary chunks are blocks of data whose contents are not strictly required to reconstruct or display the main image, and they can hold additional information while still keeping a valid PNG format [(4.2 – Ancillary Chunks)](https://datatracker.ietf.org/doc/html/rfc2083#page-19)
+Ancillary chunks are blocks of data whose contents are not strictly required to reconstruct or display the main image, and they can hold additional information while still keeping a valid PNG format [4.2 – Ancillary Chunks](https://datatracker.ietf.org/doc/html/rfc2083#page-19)
 
 But here’s the interesting part: the “cOMM" chunk used here is not one of the officially defined ancillaries in the RFC.
 
 So… what’s going on here??
 
-This is where the magic happens: since “cOMM” is not part of the standard PNG specification, decoders will safely ignore any unknown ancillary chunk types and continue rendering the image normally [(12.12 – Chunk Layout)](https://datatracker.ietf.org/doc/html/rfc2083#page-77)
+This is where the magic happens: since “cOMM” is not part of the standard PNG specification, decoders will safely ignore any unknown ancillary chunk types and continue rendering the image normally [12.12 – Chunk Layout](https://datatracker.ietf.org/doc/html/rfc2083#page-77)
 
 This behavior makes it possible to embed additional data such as an entire HTML file inside such a chunk without affecting how the image is rendered. As a result, the PNG remains visually intact, but it secretly carries an extra payload that may be interpreted differently depending on how the file is served or processed.
 
