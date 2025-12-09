@@ -59,7 +59,7 @@ Ancillary chunks are blocks of data whose contents are not strictly required to 
 
 But here’s the interesting part: the “cOMM" chunk used here is not one of the officially defined ancillaries in the RFC.
 
-So… what’s going on here??
+So… what’s going on here???
 
 This is where the magic happens: since “cOMM” is not part of the standard PNG specification, decoders will safely ignore any unknown ancillary chunk types and continue rendering the image normally [12.12 – Chunk Layout - Page 77](https://datatracker.ietf.org/doc/html/rfc2083)
 
